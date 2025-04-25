@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petunjuk Permainan</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Petunjuk Permainan</h2>
+    <p>Game ini adalah permainan mencocokkan kartu. Pilih dua kartu yang sama untuk mencetak skor. Semakin cepat Anda menyelesaikan permainan, semakin tinggi skor Anda.</p><br> 
+    <a href="{{ url_for('index') }}"><button>Kembali</button></a>
+  </div>
+</body>
+</html>

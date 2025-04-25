@@ -1,0 +1,134 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg, #6a11cb 33%, #1869f5 33%, #115bdc 66%, #f39c12 66%, #f39c12 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+/* Animasi Background */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Container Utama */
+.container {
+    width: 90%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Header */
+header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    background: -webkit-linear-gradient(45deg, #f39c12, #6a11cb,#1869f5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+
+.level-scores {
+    margin: 20px 0;
+}
+
+.level-scores h3 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.level-scores ul {
+    list-style: none;
+    padding: 0;
+}
+
+.level-scores li {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.level-scores li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Tombol */
+.btn-container {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border-radius: 8px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .scoreboard h2 {
+        font-size: 1.5rem;
+    }
+
+    .level-scores h3 {
+        font-size: 1.3rem;
+    }
+
+    .level-scores li {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}

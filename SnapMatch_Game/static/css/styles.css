@@ -1,0 +1,391 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #6a11cb 33%, #2575fc 33%, #2575fc 66%, #f39c12 66%, #f39c12 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease infinite;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Animasi untuk menggeser gradien */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Container */
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    backdrop-filter: blur(5px);
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+
+
+/* Header */
+header {
+  margin-bottom: 20px;
+}
+
+h1, h2 {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* Game Info */
+.game-header .info {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 500px;
+  gap: 20px;
+}
+
+.game-header .info p {
+  font-size: 1.4rem;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Game Board */
+#game-board {
+  display: grid;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  padding: 20px;
+  background: #e0e0e0; /* Warna latar belakang papan permainan */
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(to bottom right, #f0f0f0, #d0d0d0); /* Gradien untuk latar belakang */
+}
+
+/* Card */
+.card {
+  width: 100%;
+  perspective: 1000px;
+  height: 0;
+  padding-bottom: 100%; /* Membuat kartu berbentuk persegi */
+  position: relative;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hilangkan sisi belakang */
+}
+
+.card-back {
+  transform: rotateY(180deg); /* Sisi belakang */
+  background-color: #3f51b5;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.revealed .card-image {
+  opacity: 1;
+}
+
+/* Win Message */
+.win-message {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  text-align: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.win-message h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.win-message .buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.win-message button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: #3f51b5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.win-message button:hover {
+  background: #2e3a9a;
+}
+
+.win-message button:active {
+  transform: scale(0.95);
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradien warna */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-3px); /* Tombol sedikit naik */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .game-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .game-header .info p {
+    font-size: 1.1rem;
+  }
+
+  #game-board {
+    gap: 8px;
+  }
+
+  .win-message h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .game-header .info p {
+    font-size: 0.9rem;
+  }
+
+  .win-message h2 {
+    font-size: 1.6rem;
+  }
+
+  .win-message button {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  margin: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Scoreboard Styles */
+.scoreboard {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
+}
+
+.scoreboard h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.scoreboard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scoreboard li {
+  font-size: 1.2rem;
+  color: #ffffff;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Button */
+button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradien warna */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-3px); /* Tombol sedikit naik */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papan Skor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/score.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Papan Skor</h1>
+        </header>
+
+        <section class="scoreboard">
+            
+            <div class="level-scores">
+                <h3>Level Mudah</h3>
+                <ul>
+                    {% for score in top_scores['easy'] %}
+                        <li>{{ loop.index }}. {{ score }}</li>
+                    {% else %}
+                        <li>Belum ada skor</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="level-scores">
+                <h3>Level Sedang</h3>
+                <ul>
+                    {% for score in top_scores['medium'] %}
+                        <li>{{ loop.index }}. {{ score }}</li>
+                    {% else %}
+                        <li>Belum ada skor</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="level-scores">
+                <h3>Level Sulit</h3>
+                <ul>
+                    {% for score in top_scores['hard'] %}
+                        <li>{{ loop.index }}. {{ score }}</li>
+                    {% else %}
+                        <li>Belum ada skor</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <div class="btn-container">
+            <a href="/" class="btn">Kembali ke Menu</a>
+        </div>
+    </div>
+
+</body>
+</html>

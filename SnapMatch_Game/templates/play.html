@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Play Game</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Hello {{ player_name }}!</h2>
+    <p>Level: {{ level }}</p>
+    <p>Play the game here...</p>
+
+    <form action="/submit_score" method="POST">
+        <label>Enter Your Score:</label>
+        <input type="number" name="score" required>
+        <button type="submit">Submit Score</button>
+    </form>
+</body>
+</html>

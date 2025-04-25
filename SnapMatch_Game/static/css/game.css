@@ -1,0 +1,500 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc, #f39c12);
+    background-size: 400% 400%;
+    animation: gradientShift 6s ease infinite;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Gradient Animation */
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Container Styling */
+  .container {
+    text-align: center;
+    width: 40%;
+    max-width: 800px;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  header {
+    margin-bottom: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 2.rem;
+    margin-bottom: 0.3em;
+  }
+  
+  h2 {
+    font-size: 1rem;
+  }
+  
+  /* Game Info */
+.game-header .info {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 500px;
+    gap: 20px;
+  }
+  
+  .game-header .info p {
+    font-size: 1.4rem;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Game Board */
+  #game-board {
+    display: grid;
+    gap: 10px;
+    margin: 20px auto;
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    padding: 20px;
+    background: #e0e0e0; /* Warna latar belakang papan permainan */
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to bottom right, #6b11cb90, #2574fc83, #f39d1293); /* Gradien untuk latar belakang */
+  }
+  
+  /* Card */
+  .card {
+    width: 100%;
+    perspective: 1000px;
+    height: 0;
+    padding-bottom: 100%; /* Membuat kartu berbentuk persegi */
+    position: relative;
+    background-color: #c3cdef;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
+  
+  .card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hilangkan sisi belakang */
+  }
+  
+  .card-back {
+    transform: rotateY(180deg); /* Sisi belakang */
+    background-color: #3f51b5;
+    color: #7c6363;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+  
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .revealed .card-image {
+    opacity: 1;
+  }
+  
+  /* Win Message */
+  .win-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    text-align: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .win-message h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  
+  .win-message .buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+  }
+  
+  .win-message button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: #3f51b5;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .win-message button:hover {
+    background: #2e3a9a;
+  }
+  
+  .win-message button:active {
+    transform: scale(0.95);
+  }
+  
+  button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradien warna */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  button:hover {
+    transform: translateY(-3px); /* Tombol sedikit naik */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .game-header h1 {
+      font-size: 2.2rem;
+    }
+  
+    .game-header .info p {
+      font-size: 1.1rem;
+    }
+  
+    #game-board {
+      gap: 8px;
+    }
+  
+    .win-message h2 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .game-header h1 {
+      font-size: 1.8rem;
+    }
+  
+    .game-header .info p {
+      font-size: 0.9rem;
+    }
+  
+    .win-message h2 {
+      font-size: 1.6rem;
+    }
+  
+    .win-message button {
+      padding: 10px 18px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  
+  #win-message h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background: #3f51b5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background: #303f9f;
+    transform: translateY(-3px);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Timer and Score Section */
+  #stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  #stats p {
+    font-size: 1.2rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    #game-board {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #game-board {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+ 
+/* Pop-up Stop Game */
+#stop-popup {
+    display: none;
+    position: fixed; /* Agar tetap di layar */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7); /* Latar belakang transparan */
+    color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out; /* Animasi muncul */
+}
+
+#stop-popup h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, #f39c12, #6a11cb, #1869f5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#stop-popup p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Tombol Pop-up */
+#stop-popup .btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Tengah-kan tombol */
+    gap: 10px; /* Jarak antar tombol */
+}
+
+#stop-popup button {
+    width: 100%; /* Membuat tombol memanfaatkan lebar penuh */
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border-radius: 8px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#stop-popup button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+#stop-popup button:active {
+    transform: scale(0.95);
+}
+
+/* Animasi Fade-In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pop-up Akhir Permainan */
+#win-message {
+  display: none;
+  position: fixed; /* Agar tetap di layar */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7); /* Latar belakang transparan */
+  color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  text-align: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out; /* Animasi muncul */
+}
+
+#win-message h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: -webkit-linear-gradient(45deg, #f39c12, #6a11cb, #1869f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#win-message p {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+/* Tombol Pop-up */
+#win-message .btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Tengah-kan tombol */
+  gap: 10px; /* Jarak antar tombol */
+}
+
+#win-message button {
+  width: 100%; /* Membuat tombol memanfaatkan lebar penuh */
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border-radius: 8px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#win-message button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+#win-message button:active {
+  transform: scale(0.95);
+}
+
+/* Animasi Fade-In */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+

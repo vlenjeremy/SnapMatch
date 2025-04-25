@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
+    <script defer src="{{ url_for('static', filename='js/game.js') }}"></script>
+    <title>Permainan - Level {{ level }}</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Permainan Memory</h1>
+            <h2 id="level-title">Level: {{ level|capitalize }}</h2>
+        </header>
+
+        <footer>
+            <button id="stop-game">Stop Permainan</button>
+        </footer>
+
+        <main>
+            <div id="game-board" class="game-board"></div>
+        </main>
+
+        <div id="stats">
+            <p>Waktu Tersisa: <span id="time">120</span> detik</p>
+            <p>Skor: <span id="score">0</span></p>
+        </div><br>
+
+        <!-- Pop-up untuk akhir permainan -->
+        <div id="win-message" style="display: none; text-align: center; margin-top: 20px;">
+            <h2>🎉 Permainan Selesai! 🎉</h2>
+            <p>Skor Anda: <span id="final-score"></span></p>
+            <button id="continue-button">Lanjutkan Permainan</button><br><br>
+            <button id="scoreboard-button">Lihat Papan Skor</button>
+        </div>
+
+        <!-- Pop-up untuk stop permainan -->
+        <div id="stop-popup">
+            <h2>Permainan Dihentikan</h2>
+            <p>Waktu berhenti. Apa yang ingin Anda lakukan?</p>
+            <button id="resume-game">Lanjutkan Permainan</button><br><br>
+            <button id="restart-game">Ulangi Permainan</button><br><br>
+            <button id="exit-game">Keluar dari Game</button>
+        </div>
+
+    </div>
+</body>
+</html>
